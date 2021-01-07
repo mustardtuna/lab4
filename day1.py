@@ -40,3 +40,38 @@ while i * i < n: #while loop
     i = i + 1 
 
 print (n) #prints n, gives us answer to the largest prime factor question!
+
+
+#Project Euler Q4: Largest palindrome product
+
+n = 0 #establishes base necessary for finding palindrome product!
+for a in range(999, 100, -1): #sets our ranges for a
+    for b in range(a, 100, -1): #sets our ranges for b
+        x = a * b #formula for product
+        if x > n: #if statement
+            s = str(a * b)
+            if s == s[::-1]:
+                n = a * b   #completes palindrome product requirements
+
+print (n) #prints answer!
+
+
+#Project Euler Q5: Smallest multiple
+
+def gcd(a,b): return b and gcd(b, a % b) or a #establishes element greatest common denominator
+def lowestcommonmult(a,b): return a * b / gcd(a,b) #establishes lowest common multiples
+
+n = 1 #sets n as main variable
+for i in range(1, 20): #parameteres for "evenly divisible by all of the numbers from 1 to 20"
+    n = lowestcommonmult(n, i) #asks n to use lowestcommonmult to find the smallest multiple
+
+print (n) #prints answer!
+
+
+#Project Euler Q6: Sum square difference
+
+#this one was deceptively simple. I knew it had something to do with a pattern so I tried to establish set variables in my code initially. didn't work so I moved onto this.
+def sumsquaredifference(n): #establishes function
+      return (((n**2) * (n + 1)**2) / 4) - (n * (n + 1) * (2*n + 1) / 6) #formula for the pattern
+
+print(sumsquaredifference(100)) #prints out answer to "Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum."
