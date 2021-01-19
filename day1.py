@@ -209,3 +209,18 @@ while True: #I'm creating a loop that only breakes if we generate a trianglenumb
 		i += 1
 
      #struggling to continue
+
+
+#Project Euler Q10: Summation of primes (cont'd)
+
+sieve = [True] * 2000000 #Using the sieve methhod, becaue it is decidedly faster to run 2 million prime numbers
+def mark(sieve, x): #In the following implementation, a boolean array is used to mark multiples of prime numbers
+    for i in range(x+x, len(sieve), x):
+        sieve[i] = False
+        
+for x in range(2, int(len(sieve) ** 0.5) + 1): #for statement to set ranges for our numbers
+    if sieve[x]: mark(sieve, x)
+    
+print (sum(i for i in range(2, len(sieve)) if sieve[i])) #gives us "the sum of all the primes below two million"
+
+#I attempted the sieve method and was successful! It ran wayyy faster than the previous brute force approach.
