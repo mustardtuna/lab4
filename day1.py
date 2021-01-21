@@ -224,3 +224,36 @@ for x in range(2, int(len(sieve) ** 0.5) + 1): #for statement to set ranges for 
 print (sum(i for i in range(2, len(sieve)) if sieve[i])) #gives us "the sum of all the primes below two million"
 
 #I attempted the sieve method and was successful! It ran wayyy faster than the previous brute force approach.
+
+
+#Project Euler Q12: Highly divisible triangular number (cont'd)
+
+import functools #were back attempting number 12 and this time i researched using a function called reduce
+
+n = 28 #n=28 because we already know the number has more than 5 divisors
+
+while True: #starts infinite loop that breakks only if we generate a triangle number with 500 divisors
+	triangle_number = n*(n+1)/2 #sum of num from 1 to n
+	n = n+1 #increasing value of n after each time we use it
+	dic = {} #A dictionary to store the powers of primes
+	i = 2 #prime number 2	
+	while i <= triangle_number: #for loop to factor a number
+		if triangle_number % i == 0: #conditions
+			triangle_number = triangle_number/i #chhanges value to avoid repeats
+			if i in dic: #store the value in terms of power of the prime num
+				dic[i] += 1
+			else:
+				dic[i] = 1
+			i -= 1
+		i += 1
+	
+	powers = map(lambda x:(x+1),dic.values()) #Increasing value of powers to find num of divisors
+
+	divisors = functools.reduce(lambda x,y:x*y, powers)	# gives us num of divisors
+        #note that reduce is used to apply a function to an iterable and then reduces it to a single cumulative value
+	if divisors > 500:	#condition to check if divisors > 500
+		print ((n-1)*(n)/2) #prints our number!
+		break #break to stop loop because i tried it without break at first and it was... a mess
+
+
+
